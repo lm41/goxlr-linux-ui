@@ -30,15 +30,15 @@ body {
 }
 
 @font-face {
-  src: url('./assets/LeagueMono.ttf');
-  font-family:'LeagueMonoVariable';
+  src: url('./assets/LeagueMono-NarrowRegular.ttf');
+  font-family:'LeagueMonoCondensed';
   font-style: normal;
   font-stretch: 1% 500%; /* Required by Chrome */
 }
 
 #app {
   /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
-  font-family: LeagueMonoVariable, sans-serif;
+  font-family: LeagueMonoCondensed, sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

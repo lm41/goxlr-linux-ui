@@ -47,7 +47,7 @@ export default {
   margin-bottom: -1px;
   width: 150px;
 
-  font-family: LeagueMonoVariable, sans-serif;
+  /*font-family: LeagueMonoVariable, sans-serif;*/
   border-radius: 5px 5px 0 0;
   color: #fff;
 }

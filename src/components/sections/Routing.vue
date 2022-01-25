@@ -120,6 +120,7 @@ tr th {
 .rotated {
   background-color: #3b413f;
   text-align: center;
+  width: 15px;
 }
 
 .rotated span {
