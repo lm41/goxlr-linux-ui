@@ -32,8 +32,7 @@ export default {
   },
 
   watch: {
-    currentFieldValue: function (newValue, oldValue) {
-      console.log(oldValue + " - " + newValue);
+    currentFieldValue: function (newValue) {
       this.localFieldValue = newValue;
     }
   },

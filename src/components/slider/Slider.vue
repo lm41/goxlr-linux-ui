@@ -1,7 +1,7 @@
 <template>
   <div id="sliderBox">
     <Label v-bind:title="title" />
-    <Range :current-field-value="fieldValue" :min-value="sliderMinValue" :max-value="sliderMaxValue" @value-updated="sliderValueUpdated" />
+    <Range :current-field-value=fieldValue :min-value="sliderMinValue" :max-value="sliderMaxValue" @value-updated="sliderValueUpdated" />
     <Input :current-text-value="textValue" :min-value="textMinValue" :max-value="textMaxValue" @value-updated="inputValueUpdated"  />
   </div>
 </template>
@@ -46,17 +46,14 @@ export default {
 
   methods: {
     sliderValueUpdated(newValue) {
-      this.fieldValue = newValue;
+      this.fieldValue = parseInt(newValue);
 
       this.calculateTextValue();
-      console.log(newValue);
     },
 
     inputValueUpdated(newValue) {
       // Webkit / Blink are interesting in that they wont prevent a user from entering an invalid
       // number, so we use this code to force any entry into our boundries.
-
-      console.log(newValue);
 
       if (newValue > this.textMaxValue) {
         this.textValue = 0;
