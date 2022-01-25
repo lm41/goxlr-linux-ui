@@ -23,7 +23,7 @@
       <tr>
         <!-- Sampler is a little weird, it's on a line by itself because reasons? -->
         <th colspan="2">Sampler</th>
-        <Cell v-for="input in inputs" :key="input" :enabled="isEnabled(-1, getIndexForInput(input))" :output="-1" :input="getIndexForInput(input)" @clicked="handleClick" />
+        <Cell v-for="input in inputs" :key="input" :enabled="isEnabled(4, getIndexForInput(input))" :output="4" :input="getIndexForInput(input)" @clicked="handleClick" />
       </tr>
     </table>
   </ContentBox>
@@ -52,13 +52,8 @@ export default {
   },
 
   created() {
-    // Generate a 'base' map..
-    for (let i = -1; i < this.outputs.length; i++) {
-      this.state[i] = [];
-      for (let j = 0; j < this.inputs.length; j++) {
-        this.state[i][j] = false;
-      }
-    }
+    // Fortunately, the input map we have is relatively sane, so we should be able to..
+    this.state = this.$device.routingMap;
   },
 
   methods: {

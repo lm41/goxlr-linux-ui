@@ -47,6 +47,7 @@ dependencies = [
  "goxlr-types",
  "serde",
  "serde_json",
+ "strum 0.23.0",
  "tauri",
  "tauri-build",
  "tokio",

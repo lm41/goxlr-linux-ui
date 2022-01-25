@@ -1,11 +1,9 @@
-<template>
+<template>5
   <HelloWorld />
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import { invoke } from '@tauri-apps/api/tauri'
-
 
 export default {
   name: 'App',
@@ -14,11 +12,7 @@ export default {
   },
 
   created() {
-   //  // Attempt a call through to rust..
-   invoke('test_command', { param: "Hello From javascript!" })
-   .then((res) => console.log(res) );
-
-
+   console.log(this.$device);
   }
 }
 </script>

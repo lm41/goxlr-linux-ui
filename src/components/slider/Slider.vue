@@ -33,6 +33,8 @@ export default {
   },
 
   props: {
+    id: { type: Number, default: -1 },
+
     title: { type: String, default: "UNSET" },
 
     sliderMinValue: Number,
@@ -116,6 +118,12 @@ export default {
   mounted() {
     this.fieldValue = this.sliderValue;
     this.calculateTextValue();
+  },
+
+  watch: {
+    fieldValue: function(newValue) {
+      this.$emit('value-changed', this.id, newValue);
+    }
   }
 }
 </script>

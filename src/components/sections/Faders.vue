@@ -20,7 +20,7 @@
       <Button label="Line Out" buttonId="9" :is-active="isActiveSource(9)" @button-pressed="sourcePressed"/>
     </ButtonList>
 
-    <ButtonList title="Mute Behaviour">
+    <ButtonList title="Mute Behaviour" class="hidden">
       <Button label="Mute All" buttonId="0" :is-active="isActiveMuteBehaviour(0)" :is-disabled="isMuteBehaviourDisabled(0)" @button-pressed="micBehaviourPressed" />
       <Button label="Mute to Stream" buttonId="1" :is-active="isActiveMuteBehaviour(1)" :is-disabled="isMuteBehaviourDisabled(1)" @button-pressed="micBehaviourPressed"/>
       <Button label="Mute to Voice Chat" buttonId="2" :is-active="isActiveMuteBehaviour(2)" :is-disabled="isMuteBehaviourDisabled(2)" @button-pressed="micBehaviourPressed"/>
@@ -34,6 +34,7 @@
 import ContentBox from "../ContentBox";
 import ButtonList from "../button_list/ButtonList";
 import Button from "../button_list/Button";
+import {invoke} from "@tauri-apps/api/tauri";
 
 export default {
   /**
@@ -79,6 +80,9 @@ export default {
       if (this.isMuteBehaviourDisabled(this.channel[this.activeChannel].micBehaviour)) {
         this.channel[this.activeChannel].micBehaviour = 0;
       }
+
+      // Let Rust know!
+      invoke('set_fader_channel', { id: this.activeChannel, channelId: parseInt(id) });
     },
 
     micBehaviourPressed: function(id) {
@@ -125,15 +129,36 @@ export default {
           return true;
         }
       }
+    },
 
-
+    getChannelIdByName(name) {
+      switch (name) {
+        case "Mic": return 0;
+        case "LineIn": return 5;
+        case "Console": return 4;
+        case "System": return 6;
+        case "Game": return 3;
+        case "Chat": return 1;
+        case "Sample": return 7;
+        case "Music": return 2;
+        case "Headphones": return 8;
+        case "LineOut": return 9;
+      }
     }
+  },
 
+  created: function() {
+    // We need to configure the data here from this.$device, so lets go?
+    this.channel[0].sourceSelection = this.getChannelIdByName(this.$device.mixer.fader_a_assignment);
+    this.channel[1].sourceSelection = this.getChannelIdByName(this.$device.mixer.fader_b_assignment);
+    this.channel[2].sourceSelection = this.getChannelIdByName(this.$device.mixer.fader_c_assignment);
+    this.channel[3].sourceSelection = this.getChannelIdByName(this.$device.mixer.fader_d_assignment);
   }
-
 }
 </script>
 
 <style scoped>
-
+.hidden {
+  display: none;
+}
 </style>

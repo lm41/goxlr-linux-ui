@@ -18,6 +18,7 @@ tauri-build = { version = "1.0.0-beta.3" }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.0.0-beta.5", features = ["api-all"] }
+strum = { version = "0.23"}
 
 tokio = {version = "1.0", features = ["net"] }
 tokio-util = { version = "0.6.9", features= ["codec"] }
@@ -26,6 +27,7 @@ tokio-serde = { version = "0.8.0", features= ["bincode"] }
 goxlr-ipc = { path = "../util/ipc" }
 goxlr-types = { path = "../util/types"}
 anyhow = "1.0"
+
 
 [features]
 default = [ "custom-protocol" ]

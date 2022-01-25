@@ -2,14 +2,14 @@
 
 <div id="main">
   <Tabs>
-    <Tab name="Mic" :selected="true">
-      <div class="contentPad">
-        <div class="section">
-          <Mic />
-        </div>
-      </div>
-    </Tab>
-    <Tab name="Mixer">
+<!--    <Tab name="Mic">-->
+<!--      <div class="contentPad">-->
+<!--        <div class="section">-->
+<!--          <Mic />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </Tab>-->
+    <Tab name="Mixer" :selected="true">
       <div class="contentPad">
           <div class="section">
             <Faders />
@@ -33,14 +33,13 @@
 
 import Faders from "./sections/Faders"
 import Mixer from "./sections/Mixer";
-import Mic from "./sections/Mic";
 import Tabs from "@/components/tabs/Tabs";
 import Tab from "@/components/tabs/Tab";
 import Routing from "@/components/sections/Routing";
 
 export default {
   name: 'HelloWorld',
-  components: {Routing, Tab, Tabs, Mic, Mixer, Faders},
+  components: {Routing, Tab, Tabs, Mixer, Faders},
 }
 </script>
 
@@ -60,5 +59,9 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+}
+
+.hidden {
+  display: none;
 }
 </style>
