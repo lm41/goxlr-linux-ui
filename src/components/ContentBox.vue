@@ -18,8 +18,13 @@ export default {
 </script>
 
 <style scoped>
-.content {
+
+.content:not(:first-child) {
+  /* Left / Right margins should be handled by the parent.. */
   margin-left: 15px;
+}
+
+.content {
   display: inline-flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -36,7 +41,5 @@ export default {
 .contentBody {
   display: inline-flex;
   flex-direction: row;
-
-  /** TODO: Apply this to children, not here! **/
 }
 </style>

@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style>
+
 body {
   background-color: #252927;
 }
@@ -33,6 +34,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
+  user-select: none;
 }
 </style>
