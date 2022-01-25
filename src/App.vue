@@ -4,11 +4,21 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import { invoke } from '@tauri-apps/api/tauri'
+
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+
+  created() {
+   //  // Attempt a call through to rust..
+   invoke('test_command', { param: "Hello From javascript!" })
+   .then((res) => console.log(res) );
+
+
   }
 }
 </script>
