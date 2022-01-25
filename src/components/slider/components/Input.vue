@@ -1,6 +1,6 @@
 <template>
   <div id="sliderInput">
-    <input type="number" v-on:input="update" v-model="localTextValue" :min="minValue" :max="maxValue" />
+    <input type="number" v-on:input="update" v-on:blur="reset" v-model="localTextValue" :min="minValue" :max="maxValue" />
   </div>
 </template>
 
@@ -10,7 +10,8 @@ export default {
 
   data() {
     return {
-      localTextValue: 0
+      localTextValue: 0,
+      lastTextValue: 0
     }
   },
 
@@ -24,6 +25,11 @@ export default {
     update(e) {
       let newValue = e.target.value;
 
+      if (newValue === "-" || newValue === "") {
+        // Cleared box, or starting negative value..
+        return;
+      }
+
       if (e.target.value > this.maxValue) {
         newValue = this.maxValue;
         this.localTextValue = this.maxValue;
@@ -35,14 +41,18 @@ export default {
       }
 
       // Value has changed, emit something upwards..
-      this.$emit("value-updated", newValue);
+      this.$emit("value-updated", parseInt(newValue));
+    },
+
+    reset(e) {
+      e.target.value = this.lastTextValue;
     }
   },
 
   watch: {
-    currentTextValue: function(newValue, oldValue) {
-      console.log(oldValue + " - " + newValue);
+    currentTextValue: function(newValue) {
       this.localTextValue = newValue;
+      this.lastTextValue = newValue;
     }
   },
 }
